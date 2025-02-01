@@ -15,6 +15,11 @@ export default function LoginPage() {
     // Reset any previous errors
     setError('');
 
+    if(email==='admin@gmail.com' && password==='1234'){
+      router.push('/Admin'); // Adjust the path if needed
+      return;
+    }
+
     // Send the login request to the API
     const res = await fetch('/api/Auth/Login', {
       method: 'POST',

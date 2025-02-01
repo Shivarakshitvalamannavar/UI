@@ -57,6 +57,16 @@ export default function UserProfile() {
             onClick={() => router.push("/Dashboard")}
             className="w-full"
           />
+          <Button
+            text={"Payment"}
+            onClick={() => router.push("/Payment")}
+            className="w-full"
+          />
+          <Button
+            text={"Chatbot"}
+            onClick={() => router.push("/Chatbot")}
+            className="w-full"
+          />
         </div>
       </div>
     </div>

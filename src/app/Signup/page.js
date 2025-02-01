@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import "../../styles/auth.css"; // Import the shared CSS file
-
+import { useRouter } from "next/navigation";
 export default function SignupPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-
+  const router =useRouter(); 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,6 +31,7 @@ export default function SignupPage() {
 
     if (response.ok) {
       setMessage(result.message);
+      router.push("/Login")
     } else {
       setError(result.message);
     }
