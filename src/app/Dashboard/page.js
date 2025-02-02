@@ -405,6 +405,26 @@ export default function EmissionsDashboard() {
   if (loading) return <p className="loading">Loading emissions data...</p>;
   if (error) return <p className="error">Error: {error}</p>;
 
+  const downloadEstimate = () => {
+    const estimateData = {
+      emissionsBreakdown: {
+        flightEmissions: emissions.flightEmissions,
+        fuelEmissions: emissions.fuelEmissions,
+        powerEmissions: emissions.powerEmissions,
+        shippingEmissions: emissions.shippingEmissions,
+      }
+    };
+  
+    const jsonString = JSON.stringify(estimateData, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "emissions_estimate.json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="dashboard">
       <header>
@@ -470,6 +490,12 @@ export default function EmissionsDashboard() {
               className="w-full"
             />
             )}
+
+<Button
+  text={"Download Estimate"}
+  onClick={downloadEstimate}
+  className="w-full"
+/>
             
           </div>
 
